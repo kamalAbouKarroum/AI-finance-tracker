@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Finance Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-wallet"></i> AI Finance Tracker</h1>
+            <div class="month-selector">
+                <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+                <h2 id="current-month">May 2025</h2>
+                <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </header>
+
+        <div class="dashboard">
+            <div class="balance-card">
+                <h3>Total Balance</h3>
+                <p id="total-balance">$0.00</p>
+            </div>
+            <div class="income-card">
+                <h3>Income</h3>
+                <p id="total-income">$0.00</p>
+            </div>
+            <div class="expense-card">
+                <h3>Expenses</h3>
+                <p id="total-expenses">$0.00</p>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="sidebar">
+                <button id="add-transaction-btn" class="btn-primary">
+                    <i class="fas fa-plus"></i> Add Transaction
+                </button>
+                
+                <div class="ai-tools">
+                    <h3>AI Insights</h3>
+                    <button id="analyze-spending-btn" class="btn-ai">
+                        <i class="fas fa-robot"></i> Analyze Spending
+                    </button>
+                    <button id="savings-suggestions-btn" class="btn-ai">
+                        <i class="fas fa-lightbulb"></i> Savings Tips
+                    </button>
+                </div>
+
+                <div class="categories">
+                    <h3>Categories</h3>
+                    <div class="category-tags">
+                        <button class="category-btn active" data-category="all">All</button>
+                        <button class="category-btn" data-category="food"><i class="fas fa-utensils"></i> Food</button>
+                        <button class="category-btn" data-category="bills"><i class="fas fa-file-invoice-dollar"></i> Bills</button>
+                        <button class="category-btn" data-category="entertainment"><i class="fas fa-gamepad"></i> Entertainment</button>
+                        <button class="category-btn" data-category="shopping"><i class="fas fa-shopping-cart"></i> Shopping</button>
+                        <button class="category-btn" data-category="income"><i class="fas fa-money-bill-wave"></i> Income</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="chart-container">
+                    <canvas id="finance-chart"></canvas>
+                </div>
+                
+                <div class="transactions">
+                    <h3>Recent Transactions</h3>
+                    <div class="transactions-list" id="transactions-list">
+                        <div class="empty-state">
+                            <i class="fas fa-coins"></i>
+                            <p>No transactions yet. Add your first transaction!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transaction Modal -->
+    <div class="modal" id="transaction-modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="modal-title">Add Transaction</h2>
+            <form id="transaction-form">
+                <div class="form-group">
+                    <label for="transaction-type">Type</label>
+                    <select id="transaction-type">
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="transaction-amount">Amount ($)</label>
+                    <input type="number" id="transaction-amount" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="transaction-category">Category</label>
+                    <select id="transaction-category">
+                        <option value="food">Food</option>
+                        <option value="bills">Bills</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="income">Income</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="transaction-description">Description</label>
+                    <input type="text" id="transaction-description">
+                </div>
+                <div class="form-group">
+                    <label for="transaction-date">Date</label>
+                    <input type="date" id="transaction-date" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancel-transaction">Cancel</button>
+                    <button type="submit" class="btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- AI Modal -->
+    <div class="modal" id="ai-modal">
+        <div class="modal-content ai-modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="ai-modal-title">AI Insights</h2>
+            <div id="ai-modal-body">
+                <!-- AI content will be inserted here -->
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn-secondary" id="ai-cancel-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
